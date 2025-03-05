@@ -3,5 +3,13 @@
 Clone the project and run
 
 ```npm i
+
+```
+
+```
     npm run dev
 ```
+
+### Deployed link
+
+https://d3-network-graph-lyart.vercel.app/
