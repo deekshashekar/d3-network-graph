@@ -130,6 +130,17 @@ const Graph = () => {
       .attr("fill", "steelblue")
       .call(drag(simulation));
 
+    const labels = svg
+      .append("g")
+      .selectAll("text")
+      .data(nodesLinked)
+      .join("text")
+      .attr("text-anchor", "middle")
+      .attr("dy", -15)
+      .style("font-size", "10px")
+      .style("fill", "#000")
+      .text((d) => d.id);
+
     // Updating positions on every tick
     simulation.on("tick", () => {
       link
@@ -139,6 +150,7 @@ const Graph = () => {
         .attr("y2", (d) => (isNodeType(d.target) ? d.target.y ?? 0 : 0));
 
       node.attr("cx", (d) => d.x ?? 0).attr("cy", (d) => d.y ?? 0);
+      labels.attr("x", (d) => d.x ?? 0).attr("y", (d) => (d.y ?? 0) - 8);
     });
 
     // Cleanup effect to prevent memory leaks and duplicate SVGs
